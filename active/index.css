@@ -1,0 +1,164 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
+html{
+  cursor:cell;
+}
+/* Custom CSS for black theme */
+body {
+  align-items: center;
+  background: rgb(9, 1, 19);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  cursor: cell;
+  font-family: "Palanquin Dark", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+#header {
+  
+  
+  padding: 20px;
+  text-align: center;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 72px;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#header img {
+  width: 80%;
+  height: auto;
+}
+
+#content {
+  text-align: center;
+  padding: 20px;
+  margin-top: -4%;
+}
+
+#content h1 {
+  font-size: 24px;
+  
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+#searchbar {
+  text-align: center;
+  margin: 20px auto;
+}
+
+
+
+a{
+  text-decoration: none;
+  color:white;
+  width:50px;
+  height:50px;
+  padding-right: 1px;
+  padding-left: 1px;
+  text-align: center;
+  align-self: center;
+}
+
+
+.form__input{display:block;margin:0 auto;padding:10px;border:none;border-radius:5px;font-size:16px;width:800px;box-shadow:0 0 5px rgba(255,255,255,0.3);color:#fff;background:linear-gradient(45deg,#ff0000,#ff00ff,#0000ff,#00ff00);background-size:200% auto;animation:gradient 3s linear infinite;text-align:center;}.form__input::placeholder{color:#FFFFF;text-align:center;}.form__input:focus{outline:none;box-shadow:0 0 5px rgba(255,255,255,0.5);}@keyframes gradient{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+
+
+
+#canvas {
+    display: block;
+    position: fixed;  /* Cover the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;  /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    
+    pointer-events: none; /* Prevents canvas from interfering with interactions */
+}
+
+#popular sites{
+  align-self: center;
+  margin-left:75px;
+  overflow-x:scroll;
+  overflow: hidden;
+  margin-top: 20 px;
+  width: 1500px;
+  height:200px;
+  padding-left: 50px;
+}
+            .popularCont svg {
+                width: 75px;
+                height: 75px;
+                margin: 10px;
+              
+                border-radius: 10px;
+                transition: transform 0.2s;
+            }
+            
+
+            #bigTitle img {
+               width: 75vw;
+            }
+
+
+
+.popularCont{
+  align-content:center;
+  margin-left: 15px;
+  margin-top: 30px;
+  background-color: black;
+  height:150px;
+  width:150px;
+  border-radius:18px;
+  border:1.75px solid #2b2a2a;
+  float: left;
+
+}
+.popularCont:hover{
+  transition: transform 0.2s;
+  transform: scale(1.05);
+  
+}
+.popularCont::after{content:"";position:absolute;top:-3px;left:-3px;right:-3px;bottom:-3px;border-radius:inherit;background:linear-gradient(45deg,red,purple);z-index:-1;opacity:0;transition:opacity 0.3s;}
+
+.popularCont p{
+  align-self: center;
+  border-radius: 9px;
+  background-color:#222;
+  color:white;
+  margin:5px;
+  padding: 3px;
+}
+
+.fa {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #fff;
+}
+
+.fa:hover {
+  color: #aaa;
+}
+
+.module-border-wrap {
+  margin-left: 200px;
+  max-width: fit-content;
+  padding: 1rem;
+  align-self: center;
+  background: white;
+  padding: 3px;
+  border-radius: 5px;
+}
