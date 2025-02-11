@@ -1,2 +1,20 @@
-# Jace UBG
-An unblocked games site i made for my friend
+# Bliss Cloud
+An unblocked games & Proxy Site
+## Advantages
+### Jace UBG
+A site that uses the Jace UBG unblocked games base (developed by me)
+
+### UV-Static
+The Proxy is based on UV-Static by @tf7software, making it a great and versitile proxy
+
+### Coming  Soon
+* Movies & TV (in development)
+* Music
+* AI
+* Settings
+
+### Settings Features (Coming Soon)
+* Tab Cloak
+* About:Blank Cloak
+* Custom Themes
+* And more...
