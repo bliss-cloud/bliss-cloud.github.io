@@ -8,6 +8,7 @@ A site that uses the Jace UBG unblocked games base (developed by me)
 The Proxy is based on UV-Static by @tf7software, making it a great and versitile proxy
 
 ### Coming  Soon
+* UI Update
 * Movies & TV (in development)
 * Music
 * AI
