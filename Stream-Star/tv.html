@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb ID Redirect</title>
+</head>
+<body>
+    <form id="imdbForm">
+       
+        <input type="text" id="imdbId" name="imdbId" placeholder="IMDB ID" required>
+        <input type="text" id="season" name="imdbId" placeholder="Season #" required>
+        <input type="text" id="episode" name="imdbId" placeholder="Episode #" required>
+<button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('imdbForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let imdbId = document.getElementById('imdbId').value;
+            if (imdbId.startsWith("tt")) {
+                imdbId = imdbId.substring(2);
+            }
+           let season = document.getElementById('season').value;
+           let episode = document.getElementById('episode').value;
+            window.location.href = `stream/multi.html?IMDb=${imdbId}&s=${season}&e=${episode}`;
+        });
+    </script>
+</body>
+</html>
