@@ -23,6 +23,7 @@
 <body>
 
     <script>
+        
         const urlParams = new URLSearchParams(window.location.search);
         const imdbId = urlParams.get('IMDb');
         const iframeUrl = `embed.html#https://multiembed.mov/directstream.php?video_id=${imdbId}`;
@@ -32,6 +33,11 @@
         } else {
             document.write('<p>Please provide a valid IMDb ID in the URL parameter.</p>');
         }
+        $('a[target="_blank"]').each(function(){
+    var linkText = $(this).text();
+    $(this).after(linkText);
+    $(this).remove();
+});
     </script>
 
 </body>
