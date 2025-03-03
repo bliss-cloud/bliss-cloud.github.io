@@ -1,0 +1,38 @@
+# IMDb Iframe Embed
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Iframe Embed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const imdbId = urlParams.get('IMDb');
+        const iframeUrl = `embed.html#https://multiembed.mov/directstream.php?video_id=${imdbId}`;
+
+        if (imdbId) {
+            document.write(`<iframe src="${iframeUrl}" title="IMDb Movie"></iframe>`);
+        } else {
+            document.write('<p>Please provide a valid IMDb ID in the URL parameter.</p>');
+        }
+    </script>
+
+</body>
+</html>
