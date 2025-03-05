@@ -36,12 +36,12 @@
         document.getElementById('movieForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const title = document.getElementById('movieTitle').value.replace(/ /g, '+');
-            fetch(`https://www.omdbapi.com/?t=${title}`)
+            const info = fetch(`https://www.omdbapi.com/?t=${title}`)
                 .then(response => response.json())
                 .then(data => {
                     const movie = data.find(m => m.title.replace(/ /g, '+') === title);
                     if (movie) {
-                        window.location.href = `https://www.imdb.com/title/${movie.imdbID}/`;
+                        window.location.href = `https://www.imdb.com/title/${info.imdbID}/`;
                     } else {
                         alert('Movie not found!');
                     }
