@@ -20,6 +20,7 @@
             let imdbId = document.getElementById('imdbId').value;
             if (imdbId.startsWith("https://www.imdb.com/title/")) {
                 imdbId = imdbId.substring(27);
+                imdbId = imdbID.substring(0, imdbID.length - 1)
             }
             window.location.href = `stream/long.html?IMDb=${imdbId}`;
         });
