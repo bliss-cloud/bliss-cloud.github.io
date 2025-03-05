@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMDb ID Redirect</title>
 </head>
+<style> @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
+  html{
+    background-color: black;
+    color: white;
+    cursor: cell;
+    font-family: "Palanquin Dark", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  a{
+    color: white;
+  }</style>
 <body>
     <form id="imdbForm">
        
@@ -14,17 +27,27 @@
 <button type="submit">Submit</button>
     </form>
 
+    
+    <h2> How to get the imdb Link</h2>
+<p>1. Find the movie on imdb, using the search below<br>2.Find Movie<br>3. Tripple Click the blue text under what youwant to watch (the link should be https://imdb.com/title/tt########/ nothing else will work<br>4.[CTRL]+C </p>
+<script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf">
+</script>
+<div class="gcse-search"></div>
+    </form>
+
     <script>
         document.getElementById('imdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let imdbId = document.getElementById('imdbId').value;
-            if (imdbId.startsWith("tt")) {
-                imdbId = imdbId.substring(2);
+            if (imdbId.startsWith("https://www.imdb.com/title/")) {
+                imdbId = imdbId.substring(27);
+                imdbId = imdbId.substring(0, imdbId.length - 1)
             }
-           let season = document.getElementById('season').value;
+             let season = document.getElementById('season').value;
            let episode = document.getElementById('episode').value;
             window.location.href = `stream/multi.html?IMDb=${imdbId}&s=${season}&e=${episode}`;
         });
+        
     </script>
 </body>
 </html>
