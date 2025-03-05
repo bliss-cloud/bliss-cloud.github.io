@@ -10,17 +10,24 @@
         <label for="imdbId">Enter IMDb ID:</label>
         <input type="text" id="imdbId" name="imdbId" required>
         <button type="submit">Submit</button>
+<h2> How to get the imdb ID</h2>
+<p>1. Find the movie on imdb, using the search below<br>2. Copy link<br>3. paste link</p>
     </form>
 
     <script>
         document.getElementById('imdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let imdbId = document.getElementById('imdbId').value;
-            if (imdbId.startsWith("tt")) {
-                imdbId = imdbId.substring(2);
+            if (imdbId.startsWith("https://www.imdb.com/title/")) {
+                imdbId = imdbId.substring(27);
             }
             window.location.href = `stream/long.html?IMDb=${imdbId}`;
         });
+        
     </script>
+<script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf">
+</script>
+<div class="gcse-search"></div>
+
 </body>
 </html>
