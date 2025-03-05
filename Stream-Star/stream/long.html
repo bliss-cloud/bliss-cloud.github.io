@@ -26,10 +26,10 @@
         
         const urlParams = new URLSearchParams(window.location.search);
         const imdbId = urlParams.get('IMDb');
-        const iframeUrl = 'embed.html#https://multiembed.mov/directstream.php?video_id=${imdbId}';
+        const iframeUrl = `embed.html#https://multiembed.mov/directstream.php?video_id=${imdbId}`;
 
         if (imdbId) {
-            document.write('<iframe src="${iframeUrl}" title="IMDb Movie"></iframe>');
+            document.write(`<iframe src="${iframeUrl}" title="IMDb Movie"></iframe>`);
         } else {
             document.write('<p>Please provide a valid IMDb ID in the URL parameter.</p>');
         }
