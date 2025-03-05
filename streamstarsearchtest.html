@@ -36,7 +36,7 @@
         document.getElementById('movieForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const title = document.getElementById('movieTitle').value.replace(/ /g, '+');
-            const info = fetch(`https://www.omdbapi.com/?t=${title}`)
+            const info = fetch(`https://www.omdbapi.com/?t=${title}&apikey=d18c3338`)
                 .then(response => response.json())
                 .then(data => {
                     const movie = data.find(m => m.title.replace(/ /g, '+') === title);
