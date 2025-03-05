@@ -29,7 +29,8 @@
         const iframeUrl = `embed.html#https://multiembed.mov/directstream.php?video_id=${imdbId}`;
 
         if (imdbId) {
-            document.write(`<iframe src="${iframeUrl}" title="IMDb Movie"></iframe>`);
+            document.write(`<iframe src="${iframeUrl}" title="IMDb Movie" sandbox allow-top-navigation allow-same-origin allow-scripts allow-pointer-lock allow-orientation-lock 
+allow-forms allow-presentation></iframe>`);
         } else {
             document.write('<p>Please provide a valid IMDb ID in the URL parameter.</p>');
         }
