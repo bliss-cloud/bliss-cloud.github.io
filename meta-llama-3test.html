@@ -140,25 +140,31 @@ button:hover {
     </div>
 
     <script>const apiKey = "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"; // Replace with your Groq API key
-const apiKey = "YOUR_GROQ_API_KEY"; // 🔥 Replace with your actual Groq API key
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-btn");
 
-// ✅ Change to "llama3-70b-8192" if you want the 70B model
-const model = "llama3-8b-8192";
+const model = "llama3-8b-8192"; // 🔥 Change to "llama3-70b-8192" for the 70B model
 
-// Function to convert Markdown to HTML safely
+// Function to safely render Markdown with code sanitization
 function renderMarkdown(text) {
-    // Replace Markdown syntax with HTML
+    // Escape < and > inside code blocks to prevent execution
+    text = text.replace(/```([\s\S]*?)```/g, function(match, code) {
+        return `<pre>${DOMPurify.sanitize(code.replace(/</g, "&lt;").replace(/>/g, "&gt;"))}</pre>`;
+    });
+
+    // Render inline code safely
+    text = text.replace(/`(.*?)`/g, function(match, code) {
+        return `<code>${DOMPurify.sanitize(code.replace(/</g, "&lt;").replace(/>/g, "&gt;"))}</code>`;
+    });
+
+    // Convert basic Markdown to HTML
     text = text
         .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>") // Bold **text**
         .replace(/\*(.*?)\*/g, "<i>$1</i>") // Italic *text*
-        .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>') // Code block
-        .replace(/`(.*?)`/g, "<code>$1</code>") // Inline code
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links
 
-    return DOMPurify.sanitize(text); // Sanitize output
+    return DOMPurify.sanitize(text); // Final sanitization
 }
 
 // Send user input to AI
@@ -229,6 +235,7 @@ sendButton.addEventListener("click", sendMessage);
 userInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") sendMessage();
 });
+
 
 </script>
 </body>
