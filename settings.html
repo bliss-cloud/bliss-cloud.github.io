@@ -9,33 +9,79 @@
 <body>
     <main>
     <h2>Settings</h2>
-    <div class="section" id="tab-cloak">
-        <h3>Tab Cloak</h3>
-        <div class="input-group">
-            <label class="label" for="tab-name">Set Tab Name: </label>
-            <input type="text" id="tab-name" placeholder="Enter Tab Name">
-        </div>
-        <div class="input-group">
-            <label class="label" for="favicon">Set Favicon URL: </label>
-            <input type="text" id="favicon" placeholder="Enter Favicon URL">
-        </div>
+<div>
+        <label for="tab-name">Tab Name:</label>
+        <input type="text" id="tab-name" placeholder="Enter tab name" />
+    </div>
+    <div>
+        <label for="favicon">Favicon URL:</label>
+        <input type="text" id="favicon" placeholder="Enter favicon URL" />
     </div>
     
-    <div class="section" id="panic-key">
-        <h3>Panic Key</h3>
-        <div class="input-group">
-            <label class="label" for="panic-url">Set Panic URL: </label>
-            <input type="text" id="panic-url" placeholder="Enter URL to go to on panic">
-        </div>
-        <div class="input-group">
-            <label class="label" for="panic-key">Choose Panic Key: </label>
-            <input type="text" id="panic-key" placeholder="Press your panic key here">
-        </div>
+    <!-- Panic Key Section -->
+    <div>
+        <label for="panic-key">Panic Key:</label>
+        <input type="text" id="panic-key" placeholder="Enter panic key" />
     </div>
+    <div>
+        <label for="panic-url">Panic URL:</label>
+        <input type="text" id="panic-url" placeholder="Enter panic URL" />
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved settings from localStorage
+            const tabName = localStorage.getItem('tabName');
+            const faviconUrl = localStorage.getItem('faviconUrl');
+            const panicKey = localStorage.getItem('panicKey');
+            const panicUrl = localStorage.getItem('panicUrl');
 
-    <div class="input-group">
-        <button id="save-settings">Save Settings</button>
-    </div>
+            // Set saved values to input fields
+            if (tabName) {
+                document.getElementById('tab-name').value = tabName;
+            }
+
+            if (faviconUrl) {
+                document.getElementById('favicon').value = faviconUrl;
+            }
+
+            if (panicKey) {
+                document.getElementById('panic-key').value = panicKey;
+            }
+
+            if (panicUrl) {
+                document.getElementById('panic-url').value = panicUrl;
+            }
+
+            // Save Tab Cloak settings when input changes
+            document.getElementById('tab-name').addEventListener('input', function () {
+                localStorage.setItem('tabName', this.value); // Save tab name
+                document.title = this.value; // Update the tab title immediately
+            });
+
+            document.getElementById('favicon').addEventListener('input', function () {
+                localStorage.setItem('faviconUrl', this.value); // Save favicon URL
+                const link = document.querySelector("link[rel*='icon']");
+                if (link) {
+                    link.href = this.value; // Update favicon if it's already set
+                } else {
+                    const link = document.createElement('link');
+                    link.rel = 'icon';
+                    link.href = this.value;
+                    document.head.appendChild(link); // Create a new link if not already present
+                }
+            });
+
+            // Save Panic Key settings when input changes
+            document.getElementById('panic-key').addEventListener('input', function () {
+                localStorage.setItem('panicKey', this.value); // Save panic key
+            });
+
+            document.getElementById('panic-url').addEventListener('input', function () {
+                localStorage.setItem('panicUrl', this.value); // Save panic URL
+            });
+        });
+    </script>
     <br>
     <br>
 </main>
