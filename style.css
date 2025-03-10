@@ -210,3 +210,10 @@
 .back-btn:active {
     background-color: #388e3c;
 }
+iframe {
+    display: block;
+    background: #000;
+    border: none;
+    height: calc(100vh - 80px);
+    width: 100%;
+}
