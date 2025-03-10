@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Palanquin Dark', sans-serif;
+            background-color: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-group input, .input-group select {
+            padding: 8px;
+            margin: 5px;
+            width: 250px;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+        }
+        .input-group button {
+            padding: 8px 12px;
+            background: #555;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background: #777;
+        }
+    </style>
+</head>
+<body>
+    <h2>Settings</h2>
+    <div class="section" id="tab-cloak">
+        <h3>Tab Cloak</h3>
+        <div class="input-group">
+            <label class="label" for="tab-name">Set Tab Name: </label>
+            <input type="text" id="tab-name" placeholder="Enter Tab Name">
+        </div>
+        <div class="input-group">
+            <label class="label" for="favicon">Set Favicon URL: </label>
+            <input type="text" id="favicon" placeholder="Enter Favicon URL">
+        </div>
+    </div>
+    <div class="section" id="about-blank-cloaking">
+        <h3>About:Blank Cloaking</h3>
+        <div class="input-group">
+            <label class="label" for="about-blank">Open Site in about:blank: </label>
+            <input type="checkbox" id="about-blank">
+        </div>
+    </div>
+    <div class="section" id="panic-key">
+        <h3>Panic Key</h3>
+        <div class="input-group">
+            <label class="label" for="panic-url">Set Panic URL: </label>
+            <input type="text" id="panic-url" placeholder="Enter URL to go to on panic">
+        </div>
+        <div class="input-group">
+            <label class="label" for="panic-key">Choose Panic Key: </label>
+            <select id="panic-key">
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+                <option value="F5">F5</option>
+                <option value="F6">F6</option>
+                <option value="F7">F7</option>
+                <option value="F8">F8</option>
+                <option value="F9">F9</option>
+                <option value="F10">F10</option>
+                <option value="F11">F11</option>
+                <option value="F12">F12</option>
+                <option value="Escape">Escape</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>
