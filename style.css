@@ -215,5 +215,5 @@ iframe {
     background: #000;
     border: none;
     height: calc(100vh - 80px);
-    width: 400%;
+    width: 100vw;
 }
