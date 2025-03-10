@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.key === 'n') { // If CTRL + N is pressed
+            if (event.ctrlKey && event.key === '0') { // If CTRL + N is pressed
                 const navbar = document.querySelector('.bottom-nav');
                 navbar.classList.toggle('hidden'); // Toggle the navbar visibility
             }
