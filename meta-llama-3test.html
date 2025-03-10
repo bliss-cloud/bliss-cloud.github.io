@@ -140,14 +140,17 @@ button:hover {
     </div>
 
     <script>const apiKey = "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"; // Replace with your Groq API key
+const apiKey = "YOUR_GROQ_API_KEY"; // 🔥 Replace with your actual Groq API key
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-btn");
 
-const model = "llama3-8b-8192"; // 🔥 Change to "llama3-70b-8192" for a more powerful model
+// ✅ Change to "llama3-70b-8192" if you want the 70B model
+const model = "llama3-8b-8192";
 
-// Function to safely render Markdown
+// Function to convert Markdown to HTML safely
 function renderMarkdown(text) {
+    // Replace Markdown syntax with HTML
     text = text
         .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>") // Bold **text**
         .replace(/\*(.*?)\*/g, "<i>$1</i>") // Italic *text*
@@ -155,29 +158,7 @@ function renderMarkdown(text) {
         .replace(/`(.*?)`/g, "<code>$1</code>") // Inline code
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links
 
-    return DOMPurify.sanitize(text);
-}
-
-// Function to display messages
-function displayMessage(text, sender, isHTML = false) {
-    const messageDiv = document.createElement("div");
-    messageDiv.classList.add("message", sender);
-
-    const bubbleDiv = document.createElement("div");
-    bubbleDiv.classList.add("bubble");
-
-    if (isHTML) {
-        bubbleDiv.innerHTML = text;
-    } else {
-        bubbleDiv.textContent = text;
-    }
-
-    messageDiv.appendChild(bubbleDiv);
-    chatBox.appendChild(messageDiv);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    return bubbleDiv;
+    return DOMPurify.sanitize(text); // Sanitize output
 }
 
 // Send user input to AI
@@ -185,9 +166,11 @@ async function sendMessage() {
     const userMessage = userInput.value.trim();
     if (!userMessage) return;
 
+    // Display user message
     displayMessage(userMessage, "user");
     userInput.value = "";
 
+    // Show "thinking" message
     const loadingMessage = displayMessage("Thinking...", "ai");
 
     try {
@@ -199,30 +182,16 @@ async function sendMessage() {
             },
             body: JSON.stringify({
                 model: model,
-                messages: [{ role: "user", content: userMessage }],
-                stream: true // Enable streaming
+                messages: [{ role: "user", content: userMessage }]
             })
         });
 
+        const data = await response.json();
+        let aiMessage = data.choices?.[0]?.message?.content || "Sorry, I couldn't understand that.";
+
+        // Remove "thinking" message and display response
         chatBox.removeChild(loadingMessage);
-        const messageBubble = displayMessage("", "ai", true);
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-
-        let partialResponse = "";
-
-        while (true) {
-            const { value, done } = await reader.read();
-            if (done) break;
-
-            const chunk = decoder.decode(value, { stream: true });
-            partialResponse += chunk;
-
-            messageBubble.innerHTML = renderMarkdown(partialResponse);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
+        displayMessage(renderMarkdown(aiMessage), "ai", true);
     } catch (error) {
         console.error("Error:", error);
         chatBox.removeChild(loadingMessage);
@@ -230,14 +199,36 @@ async function sendMessage() {
     }
 }
 
-// Send message on button click
+// Function to display messages
+function displayMessage(text, sender, isHTML = false) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message", sender);
+
+    const bubbleDiv = document.createElement("div");
+    bubbleDiv.classList.add("bubble");
+
+    if (isHTML) {
+        bubbleDiv.innerHTML = text; // Render HTML for AI messages
+    } else {
+        bubbleDiv.textContent = text; // Plain text for user messages
+    }
+
+    messageDiv.appendChild(bubbleDiv);
+    chatBox.appendChild(messageDiv);
+
+    // Scroll to bottom
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    return messageDiv;
+}
+
+// 🔥 Send message on button click
 sendButton.addEventListener("click", sendMessage);
 
-// Send message on Enter key press
+// 🔥 Send message on Enter key press
 userInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") sendMessage();
 });
-
 
 </script>
 </body>
