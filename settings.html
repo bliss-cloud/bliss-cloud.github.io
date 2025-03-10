@@ -28,6 +28,9 @@
         <input type="text" id="panic-url" placeholder="Enter panic URL" />
     </div>
     
+    <!-- Submit Button to Save Settings -->
+    <button id="submit-settings">Save Settings</button>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Load saved settings from localStorage
@@ -53,32 +56,33 @@
                 document.getElementById('panic-url').value = panicUrl;
             }
 
-            // Save Tab Cloak settings when input changes
-            document.getElementById('tab-name').addEventListener('input', function () {
-                localStorage.setItem('tabName', this.value); // Save tab name
-                document.title = this.value; // Update the tab title immediately
-            });
+            // Submit button to save settings to localStorage
+            document.getElementById('submit-settings').addEventListener('click', function () {
+                // Get values from input fields
+                const tabNameValue = document.getElementById('tab-name').value;
+                const faviconValue = document.getElementById('favicon').value;
+                const panicKeyValue = document.getElementById('panic-key').value;
+                const panicUrlValue = document.getElementById('panic-url').value;
 
-            document.getElementById('favicon').addEventListener('input', function () {
-                localStorage.setItem('faviconUrl', this.value); // Save favicon URL
+                // Save values to localStorage
+                localStorage.setItem('tabName', tabNameValue);
+                localStorage.setItem('faviconUrl', faviconValue);
+                localStorage.setItem('panicKey', panicKeyValue);
+                localStorage.setItem('panicUrl', panicUrlValue);
+
+                // Apply the Tab Cloak settings immediately
+                document.title = tabNameValue;
                 const link = document.querySelector("link[rel*='icon']");
                 if (link) {
-                    link.href = this.value; // Update favicon if it's already set
+                    link.href = faviconValue;
                 } else {
                     const link = document.createElement('link');
                     link.rel = 'icon';
-                    link.href = this.value;
-                    document.head.appendChild(link); // Create a new link if not already present
+                    link.href = faviconValue;
+                    document.head.appendChild(link);
                 }
-            });
 
-            // Save Panic Key settings when input changes
-            document.getElementById('panic-key').addEventListener('input', function () {
-                localStorage.setItem('panicKey', this.value); // Save panic key
-            });
-
-            document.getElementById('panic-url').addEventListener('input', function () {
-                localStorage.setItem('panicUrl', this.value); // Save panic URL
+                alert('Settings saved successfully!');
             });
         });
     </script>
