@@ -23,8 +23,8 @@ window.addEventListener('load', function() {
     const panicUrl = localStorage.getItem('panicUrl');
     if (panicKey && panicUrl) {
         setupPanicKey(panicKey, panicUrl);
-        document.getElementById('panic-key').value = panicKey;
         document.getElementById('panic-url').value = panicUrl;
+        document.getElementById('panic-key').value = panicKey;
     }
 });
 
@@ -32,7 +32,6 @@ window.addEventListener('load', function() {
 document.getElementById('tab-name').addEventListener('input', function() {
     const tabName = this.value;
     document.title = tabName;
-    localStorage.setItem('tabName', tabName);
 });
 
 document.getElementById('favicon').addEventListener('input', function() {
@@ -41,32 +40,43 @@ document.getElementById('favicon').addEventListener('input', function() {
     favicon.rel = 'icon';
     favicon.href = faviconUrl;
     document.head.appendChild(favicon);
-    localStorage.setItem('faviconUrl', faviconUrl);
 });
 
 // About:Blank Cloaking
 document.getElementById('about-blank').addEventListener('change', function() {
-    const aboutBlankEnabled = this.checked;
-    localStorage.setItem('aboutBlankEnabled', JSON.stringify(aboutBlankEnabled));
-    if (aboutBlankEnabled) {
+    if (this.checked) {
         window.location.href = 'about:blank';
     }
 });
 
 // Panic Key
-document.getElementById('panic-key').addEventListener('change', function() {
-    const panicKey = this.value;
-    const panicUrl = document.getElementById('panic-url').value;
-    localStorage.setItem('panicKey', panicKey);
-    localStorage.setItem('panicUrl', panicUrl);
-    setupPanicKey(panicKey, panicUrl);
+let selectedPanicKey = '';
+document.getElementById('panic-key').addEventListener('keydown', function(e) {
+    selectedPanicKey = e.key;
+    this.value = e.key; // Display the selected key in the input field
 });
 
-document.getElementById('panic-url').addEventListener('input', function() {
-    const panicUrl = this.value;
-    const panicKey = document.getElementById('panic-key').value;
+// Save Settings
+document.getElementById('save-settings').addEventListener('click', function() {
+    // Tab Cloak
+    const tabName = document.getElementById('tab-name').value;
+    const faviconUrl = document.getElementById('favicon').value;
+    localStorage.setItem('tabName', tabName);
+    localStorage.setItem('faviconUrl', faviconUrl);
+
+    // About:Blank Cloaking
+    const aboutBlankEnabled = document.getElementById('about-blank').checked;
+    localStorage.setItem('aboutBlankEnabled', JSON.stringify(aboutBlankEnabled));
+
+    // Panic Key
+    const panicUrl = document.getElementById('panic-url').value;
+    localStorage.setItem('panicKey', selectedPanicKey);
     localStorage.setItem('panicUrl', panicUrl);
-    setupPanicKey(panicKey, panicUrl);
+
+    // Setup panic key listener
+    setupPanicKey(selectedPanicKey, panicUrl);
+
+    alert('Settings saved successfully!');
 });
 
 // Setup panic key listener
