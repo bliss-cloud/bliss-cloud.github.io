@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Site</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;700&display=swap');
+        body {
+            margin: 0;
+            font-family: 'Palanquin Dark', sans-serif;
+            background-color: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .main-content {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            background: black;
+            padding: 10px;
+            border-radius: 30px;
+            gap: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .nav-item {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+        .nav-item:hover {
+            background: #333;
+        }
+        .nav-item:hover .tooltip {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+        .tooltip {
+            position: absolute;
+            bottom: 60px;
+            background: white;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content" id="content">
+        <h2>Welcome</h2>
+        <p>Select a section from the navigation.</p>
+    </main>
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-item">
+            <span class="tooltip">Home</span>
+            🏠
+        </a>
+        <a href="#search" class="nav-item">
+            <span class="tooltip">Search</span>
+            🔍
+        </a>
+        <a href="#games" class="nav-item">
+            <span class="tooltip">Games</span>
+            🎮
+        </a>
+        <a href="#movies" class="nav-item">
+            <span class="tooltip">Movies</span>
+            🎬
+        </a>
+        <a href="#tv" class="nav-item">
+            <span class="tooltip">TV</span>
+            📺
+        </a>
+        <a href="#ai" class="nav-item">
+            <span class="tooltip">AI</span>
+            🤖
+        </a>
+    </nav>
+    <script>
+        function setActive(section) {
+            document.getElementById('content').innerHTML = `<h2>Welcome to the ${section} section</h2>`;
+        }
+    </script>
+</body>
+</html>
