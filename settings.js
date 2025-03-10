@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load saved settings
     const panicKey = localStorage.getItem('panicKey');
     const panicUrl = localStorage.getItem('panicUrl');
-    const aboutBlank = localStorage.getItem('aboutBlank') === 'true';
     const tabName = localStorage.getItem('tabName');
     const faviconUrl = localStorage.getItem('faviconUrl');
 
@@ -13,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if (panicUrl) {
         document.getElementById('panic-url').value = panicUrl;
-    }
-    if (aboutBlank) {
-        document.getElementById('about-blank').checked = true;
     }
     if (tabName) {
         document.getElementById('tab-name').value = tabName;
@@ -34,45 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('panic-url').addEventListener('change', function() {
         const url = this.value;
         localStorage.setItem('panicUrl', url);
-    });
-
-    // Event listener for the About:Blank cloaking switch
-    document.getElementById('about-blank').addEventListener('change', function() {
-        const aboutBlank = this.checked;
-        localStorage.setItem('aboutBlank', aboutBlank);
-
-        if (aboutBlank) {
-            // Open current page in an iframe inside about:blank
-            const iframeContent = `
-                <html>
-                    <head>
-                        <title>About:Blank Cloaking</title>
-                        <style>
-                            body {
-                                margin: 0;
-                                padding: 0;
-                                height: 100%;
-                                background-color: #111;
-                            }
-                            iframe {
-                                width: 100%;
-                                height: 100%;
-                                border: none;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <iframe src="${window.location.href}"></iframe>
-                    </body>
-                </html>
-            `;
-
-            // Open a new about:blank window and inject the iframe
-            const aboutBlankWindow = window.open('about:blank', '_blank');
-            aboutBlankWindow.document.open();
-            aboutBlankWindow.document.write(iframeContent);
-            aboutBlankWindow.document.close();
-        }
     });
 
     // Event listener for saving Tab Name and Favicon
