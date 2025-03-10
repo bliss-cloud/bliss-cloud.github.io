@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Fullscreen on Src Change</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 800px; /* Default width */
+            height: 600px; /* Default height */
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .fullscreen {
+            width: 100vw !important;
+            height: 100vh !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="myIframe" src="https://example.com"></iframe>
+
+    <script>
+        const iframe = document.getElementById("myIframe");
+        const allowedSrc = "https://example.com";
+
+        // Monitor iframe src changes
+        setInterval(() => {
+            if (iframe.src !== allowedSrc) {
+                iframe.classList.add("fullscreen");
+            } else {
+                iframe.classList.remove("fullscreen");
+            }
+        }, 500);
+    </script>
+
+</body>
+</html>
