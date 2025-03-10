@@ -1,0 +1,82 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+#version-status {
+    font-size: 20px;
+}
+
+.up-to-date {
+    color: green;
+}
+
+.minor-update {
+    color: yellow;
+}
+
+.major-update {
+    color: red;
+}
+
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Checker</title>
+</head>
+<body>
+    <h1>Version Checker</h1>
+    <div id="version-status">
+        <p id="current-version">Current version: <span id="version-text"></span></p>
+    </div>
+    <script>
+
+// Hardcoded version (This would be your app's current version)
+const currentVersion = "2.3.0"; // Example: Major.Minor.Patch
+
+// Simulating a JSON response with version data (replace this with actual file reading logic)
+const jsonResponse = '{"version": "2.1.0"}'; // Replace with a real JSON file read
+
+// Function to compare versions
+function compareVersions(currentVersion, versionFromJSON) {
+    const currentVersionParts = currentVersion.split('.').map(Number);
+    const jsonVersionParts = versionFromJSON.split('.').map(Number);
+
+    // Check Major Version
+    if (currentVersionParts[0] < jsonVersionParts[0]) {
+        return "major-update";
+    }
+
+    // Check Minor Version (only if major version is the same)
+    if (currentVersionParts[0] === jsonVersionParts[0] && currentVersionParts[1] < jsonVersionParts[1]) {
+        return "minor-update";
+    }
+
+    // If current version is the same as or ahead of JSON version (up to date)
+    return "up-to-date";
+}
+
+// Parse the JSON response
+const data = JSON.parse(jsonResponse);
+const versionFromJSON = data.version;
+
+// Set the version text and status
+const versionTextElement = document.getElementById('version-text');
+const versionStatusElement = document.getElementById('version-status');
+
+versionTextElement.textContent = versionFromJSON;
+const statusClass = compareVersions(currentVersion, versionFromJSON);
+
+// Apply the appropriate class based on the comparison
+versionStatusElement.classList.add(statusClass);
+
+</script>
+</body>
+</html>
