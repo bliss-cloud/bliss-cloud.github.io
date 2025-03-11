@@ -61,7 +61,7 @@
         }
         
         .chat-container {
-            width: 600px;
+            width: 100vw;
             max-width: 95%;
             background-color: #111;
             border-radius: 10px;
