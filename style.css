@@ -183,11 +183,11 @@
             background-color: #ddd;
         }
 iframe {
-    display: block;
+    display: inline;
     background: #000;
     border: none;
     height: calc(100vh - 80px);
-    width: 100vw;
+    width: calc(100vw - 20vw);
 }
 
 .hidden {
