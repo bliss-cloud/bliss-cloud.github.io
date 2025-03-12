@@ -28,10 +28,41 @@
     </style>
 </head>
 <body>
-
-    <iframe id="myIframe" src="jace/az.html"></iframe>
-
+<main>
+    <iframe id="myIframe" src="jace/az-main.html"></iframe>
+</main>
+<nav class="bottom-nav" id="nav">
+        <a href="/" class="nav-item">
+            <span class="tooltip">Home</span>
+            🏠
+        </a>
+        <a href="/active" class="nav-item">
+            <span class="tooltip">Search</span>
+            🔍
+        </a>
+        <a href="/jace" class="nav-item">
+            <span class="tooltip">Games</span>
+            🎮
+        </a>
+        <a href="/Stream-Star/movies.html" class="nav-item">
+            <span class="tooltip">Movies</span>
+            🎬
+        </a>
+        <a href="/Stream-Star/tv.html" class="nav-item">
+            <span class="tooltip">TV</span>
+            📺
+        </a>
+        <a href="/chatti.html" class="nav-item">
+            <span class="tooltip">AI</span>
+            🤖
+        </a>
+         <a href="/settings.html" class="nav-item">
+            <span class="tooltip">Settings</span>
+            ⚙
+        </a>
+    </nav>
     <script>
+        const nav = document.getElementById("nav");
         const iframe = document.getElementById("myIframe");
         const allowedSrc = "jace/az.html";
 
@@ -39,8 +70,11 @@
         setInterval(() => {
             if (iframe.src !== allowedSrc) {
                 iframe.classList.add("fullscreen");
+                nav.classList.add("hidden");
+
             } else {
                 iframe.classList.remove("fullscreen");
+                nav.classList.remove("hidden");
             }
         }, 500);
     </script>
