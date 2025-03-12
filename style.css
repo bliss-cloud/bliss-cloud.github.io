@@ -186,11 +186,27 @@ iframe {
     display: inline;
     background: #000;
     border: none;
-    height: calc(100vh - 80px);
-    width: calc(100vw - 20vw);
+    height: calc(100vh - 7.5vh);
+    width: calc(100vw);
 }
 
 .hidden {
 display:none;
 
+}
+
+#version-status {
+    font-size: 20px;
+}
+
+.up-to-date {
+    color: green;
+}
+
+.minor-update {
+    color: yellow;
+}
+
+.major-update {
+    color: red;
 }
