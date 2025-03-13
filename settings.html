@@ -9,6 +9,9 @@
 <body>
     <main>
     <h2>Settings</h2>
+    div id="version-status">
+        <p id="current-version">Current version: <span id="version-text"></span></p>
+    </div>
 <div>
         <label for="tab-name">Tab Name:</label>
         <input type="text" id="tab-name" placeholder="Enter tab name" />
@@ -86,6 +89,48 @@
             });
         });
     </script>
+     <script>
+
+// Hardcoded version (This would be your app's current version)
+const currentVersion = "1.0.0"; // Example: Major.Minor.Patch
+
+// Simulating a JSON response with version data (replace this with actual file reading logic)
+const jsonResponse = '{"version": "2.1.0"}'; // Replace with a real JSON file read
+
+// Function to compare versions
+function compareVersions(currentVersion, versionFromJSON) {
+    const currentVersionParts = currentVersion.split('.').map(Number);
+    const jsonVersionParts = versionFromJSON.split('.').map(Number);
+
+    // Check Major Version
+    if (currentVersionParts[0] < jsonVersionParts[0]) {
+        return "major-update";
+    }
+
+    // Check Minor Version (only if major version is the same)
+    if (currentVersionParts[0] === jsonVersionParts[0] && currentVersionParts[1] < jsonVersionParts[1]) {
+        return "minor-update";
+    }
+
+    // If current version is the same as or ahead of JSON version (up to date)
+    return "up-to-date";
+}
+
+// Parse the JSON response
+const data = JSON.parse(jsonResponse);
+const versionFromJSON = data.version;
+
+// Set the version text and status
+const versionTextElement = document.getElementById('version-text');
+const versionStatusElement = document.getElementById('version-status');
+
+versionTextElement.textContent = versionFromJSON;
+const statusClass = compareVersions(currentVersion, versionFromJSON);
+
+// Apply the appropriate class based on the comparison
+versionStatusElement.classList.add(statusClass);
+
+</script>
     <br>
     <br>
 </main>
