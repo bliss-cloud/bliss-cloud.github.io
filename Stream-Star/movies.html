@@ -34,12 +34,12 @@
     <script>
         document.getElementById('imdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            let imdbId = document.getElementById('imdbId').value;
-            if (imdbId.startsWith("https://www.imdb.com/title/")) {
-                imdbId = imdbId.substring(27);
-                imdbId = imdbId.substring(0, imdbId.length - 1)
-            }
-            window.location.href = `stream/long.html?IMDb=${imdbId}`;
+             function getTmdbIdFromUrl(url) {
+  const match = url.match(/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/(movie|tv)\/([0-9]+)/);
+  return match ? parseInt(match[2], 10) : null;
+}
+let ids = getTmdbIdFromUrl(imdbId)
+            window.location.href = `stream/long.html?IMDb=${ids}`;
         });
         
     </script>
