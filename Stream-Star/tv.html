@@ -22,7 +22,7 @@
 <body>
     <form id="imdbForm">
        
-        <input type="text" id="imdbId" name="imdbId" placeholder="IMDB ID" required>
+        <input type="text" id="imdbId" name="imdbId" placeholder="TMDB Link" required>
         <input type="text" id="season" name="imdbId" placeholder="Season #" required>
         <input type="text" id="episode" name="imdbId" placeholder="Episode #" required>
 <button type="submit">Submit</button>
@@ -30,7 +30,7 @@
 
     
     <h2> How to get the imdb Link</h2>
-<p>1. Find the movie on imdb, using the search below<br>2.Find Movie<br>3. Tripple Click the blue text under what youwant to watch (the link should be https://imdb.com/title/tt########/ nothing else will work<br>4.[CTRL]+C </p>
+<p>1. Find the movie on imdb, using the search below<br>2.Find Movie<br>3. Tripple Click the blue text under<br>4.[CTRL]+C </p>
 <script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf">
 </script>
 <div class="gcse-search"></div>
@@ -40,14 +40,15 @@
         document.getElementById('imdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let imdbId = document.getElementById('imdbId').value;
-            if (imdbId.startsWith("https://www.imdb.com/title/")) {
-                imdbId = imdbId.substring(27);
-                imdbId = imdbId.substring(0, imdbId.length - 1)
-            }
-             let season = document.getElementById('season').value;
+            let season = document.getElementById('season').value;
            let episode = document.getElementById('episode').value;
-            window.location.href = `stream/multi.html?IMDb=${imdbId}&s=${season}&e=${episode}`;
-        });
+           function getTmdbIdFromUrl(url) {
+  const match = url.match(/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/(movie|tv)\/([0-9]+)/);
+  return match ? parseInt(match[2], 10) : null;
+}
+let ids = getTmdbIdFromUrl(imdbId)
+            window.location.href = `stream/multi.html?IMDb=${ids}&s=${season}&e=${episode}`;
+      
         
     </script>
 </body>
