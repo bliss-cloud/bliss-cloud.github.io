@@ -25,11 +25,11 @@
     <script>
         
         const urlParams = new URLSearchParams(window.location.search);
-        const imdbId = urlParams.get('IMDb');
+        const imdbId = urlParams.get('TMDB');
         const iframeUrl = `embed.html#https://vidsrc.su/embed/movie/${imdbId}`;
 
         if (imdbId) {
-            document.write(`<iframe src="${iframeUrl}" title="IMDb Movie"></iframe>`);
+            document.write(`<iframe src="${iframeUrl}" title="TMDB Movie"></iframe>`);
         } else {
             document.write('<p>Please provide a valid TMDb ID in the URL parameter.</p>');
         }
