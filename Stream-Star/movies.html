@@ -69,15 +69,13 @@
 <body>
     <div class="form-container">
         <h2 style="color: white;">Input Form</h2>
-        <h3> Getting The Link>
+        <h3> Getting The Link</h3>
             <p>1. Find the movie or show on TMDB using by searching "movie/show name TMDB" on Google<br>
        2.Right Click, Copy Link<br>
        3. Paste it into the form below.</p>
 
         <form id="inputForm">
               <input type="text" id="tmdbId" name="tmdbId" placeholder="TMDB ID or URL" required>
-        <input type="text" id="season" name="season" placeholder="Season #" required>
-        <input type="text" id="episode" name="episode" placeholder="Episode #" required>
             <button type="submit"><i class="fas fa-play"></i></button> <!-- Play button icon -->
         </form>
     </div>
@@ -86,11 +84,10 @@
         document.getElementById('inputForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let link = document.getElementById('linkInput').value;
-            let num1 = document.getElementById('number1').value;
-            let num2 = document.getElementById('number2').value;
             
-            if (!link || !num1 || !num2) {
-                alert('Please fill in all fields.');
+            
+            if (!link) {
+                alert('Please fill in the field.');
                 return;
             }
             
