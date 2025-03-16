@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMDb ID Redirect</title>
+    <title>TMDB ID Redirect</title>
 </head>
-<style> @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
-  html{
+<style> 
+  @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
+  html {
     background-color: black;
     color: white;
     cursor: cell;
@@ -15,40 +15,41 @@
     font-weight: 400;
     font-style: normal;
   }
-
-  a{
+  a {
     color: white;
-  }</style>
+  }
+</style>
 <body>
-    <form id="imdbForm">
-       
-        <input type="text" id="imdbId" name="imdbId" placeholder="TMDB Link" required>
-        <input type="text" id="season" name="imdbId" placeholder="Season #" required>
-        <input type="text" id="episode" name="imdbId" placeholder="Episode #" required>
-<button type="submit">Submit</button>
+    <form id="tmdbForm">
+        <input type="text" id="tmdbId" name="tmdbId" placeholder="TMDB ID or URL" required>
+        <input type="text" id="season" name="season" placeholder="Season #" required>
+        <input type="text" id="episode" name="episode" placeholder="Episode #" required>
+        <button type="submit">Submit</button>
     </form>
-
     
-    <h2> How to get the imdb Link</h2>
-<p>1. Find the movie on imdb, using the search below<br>2.Find Movie<br>3. Tripple Click the blue text under<br>4.[CTRL]+C </p>
-<script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf">
-</script>
-<div class="gcse-search"></div>
-    </form>
+    <h2>How to get the TMDB Link</h2>
+    <p>1. Find the movie or show on TMDB using the search below.<br>
+       2. Copy the numerical ID from the URL (e.g., https://www.themoviedb.org/movie/123456 or https://www.themoviedb.org/tv/654321).<br>
+       3. Paste it into the form above.</p>
+
+    <script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf"></script>
+    <div class="gcse-search"></div>
 
     <script>
-        document.getElementById('imdbForm').addEventListener('submit', function(event) {
+        document.getElementById('tmdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            let imdbId = document.getElementById('imdbId').value;
+            let tmdbInput = document.getElementById('tmdbId').value;
+            let tmdbId = tmdbInput;
+            
+            // Check if input is a TMDB URL
+            let match = tmdbInput.match(/https?:\/\/www\.themoviedb\.org\/(movie|tv)\/(\d+)/);
+            if (match) {
+                tmdbId = match[2];
+            }
+            
             let season = document.getElementById('season').value;
-           let episode = document.getElementById('episode').value;
-           function getTmdbIdFromUrl(url) {
-  const match = url.match(/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/(movie|tv)\/([0-9]+)/);
-  return match ? parseInt(match[2], 10) : null;
-}
-let ids = getTmdbIdFromUrl(imdbId)
-            window.location.href = `stream/multi.html?IMDb=${ids}&s=${season}&e=${episode}`;
-      
+            let episode = document.getElementById('episode').value;
+            window.location.href = `stream/multi.html?TMDB=${tmdbId}&s=${season}&e=${episode}`;
         });
     </script>
 </body>
