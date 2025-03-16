@@ -81,18 +81,7 @@
     </div>
 
     <script>
-        document.getElementById('inputForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let link = document.getElementById('linkInput').value;
-            
-            
-            if (!link) {
-                alert('Please fill in the field.');
-                return;
-            }
-            
-            alert(`Submitted:\nLink: ${link}\nNumber 1: ${num1}\nNumber 2: ${num2}`);
-        });
+      
            document.getElementById('inputForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let tmdbInput = document.getElementById('tmdbId').value;
@@ -104,8 +93,6 @@
                 tmdbId = match[2];
             }
             
-            let season = document.getElementById('season').value;
-            let episode = document.getElementById('episode').value;
             window.location.href = `stream/long.html?TMDB=${tmdbId}`;
         });
     </script>
