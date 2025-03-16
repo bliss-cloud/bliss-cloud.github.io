@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Grid with Labels</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .grid-item img {
+            width: 100%;
+            display: block;
+            border-radius: 5px;
+        }
+        .grid-item .label {
+            margin-top: 5px;
+            background-color: #111;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Partners</h1>
+    <div class="grid-container">
+        <a href="#" class="grid-item">
+            <img src="https://benrogo.net/logo.png" alt="Image 1">
+            <div class="label">Benrogo</div>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="https://cdn.discordapp.com/attachments/1340200197418127442/1350642029708709919/Untitled249_20250210231345.png?ex=67d77ae9&is=67d62969&hm=953c49061494617a642589bd8c791c38866abd888efcd5a1e92d4c7f0bfb8f65&" alt="Image 2">
+            <div class="label">Mexi's Math</div>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="https://cdn.discordapp.com/attachments/1345950915974398024/1350642847161782512/pfp2.png?ex=67d77bac&is=67d62a2c&hm=4b9dbbebfc66edbaa5da3b4f3582303f9799bf9e9f9ee2fae2dbbf6534955a89&" alt="Image 3">
+            <div class="label">Orbit UBG</div>
+        </a>
+        <a href="#" class="grid-item">
+            <img src="https://cdn.discordapp.com/attachments/1339441630180016209/1350644278422143049/Borcelle_1.png?ex=67d77d01&is=67d62b81&hm=3cbb723e426676db78fbda87ed2037dccc36a1b002eee482f6453347904fcb96&" alt="Image 4">
+            <div class="label">AJH's Vault</div>
+        </a>
+    </div>
+</body>
+</html>
