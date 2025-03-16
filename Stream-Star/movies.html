@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="stylesheet" href="/style.css">
+  <main>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TMDB ID Redirect</title>
+    <title>Styled Input Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+        }
+        .form-container {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid white; /* White outline for the form box */
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .form-container input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid white; /* White outline for inputs */
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+        }
+        .form-container button {
+            width: 95%;
+            padding: 10px;
+            background: white; /* White background for the button */
+            color: #111; /* Dark text for contrast */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container button i {
+            font-size: 24px; /* Adjust icon size */
+        }
+        .form-container button:hover {
+            background: #f1f1f1; /* Slightly darker white on hover */
+        }
+    </style>
 </head>
-<style> 
-  @import url('https://fonts.googleapis.com/css2?family=Palanquin+Dark:wght@400;500;600;700&display=swap');
-  html {
-    background-color: black;
-    color: white;
-    cursor: cell;
-    font-family: "Palanquin Dark", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  a {
-    color: white;
-  }
-</style>
 <body>
-    <form id="tmdbForm">
-        <input type="text" id="tmdbId" name="tmdbId" placeholder="TMDB ID or URL" required>
+    <div class="form-container">
+        <h2 style="color: white;">Input Form</h2>
+        <h3> Getting The Link>
+            <p>1. Find the movie or show on TMDB using by searching "movie/show name TMDB" on Google<br>
+       2.Right Click, Copy Link<br>
+       3. Paste it into the form below.</p>
+
+        <form id="inputForm">
+              <input type="text" id="tmdbId" name="tmdbId" placeholder="TMDB ID or URL" required>
         <input type="text" id="season" name="season" placeholder="Season #" required>
         <input type="text" id="episode" name="episode" placeholder="Episode #" required>
-        <button type="submit">Submit</button>
-    </form>
-    
-    <h2>How to get the TMDB Link</h2>
-    <p>1. Find the movie or show on TMDB using the search below.<br>
-       2. Copy the numerical ID from the URL (e.g., https://www.themoviedb.org/movie/123456 or https://www.themoviedb.org/tv/654321).<br>
-       3. Paste it into the form above.</p>
-
-    <script async src="https://cse.google.com/cse.js?cx=341c9c8e59fc54ccf"></script>
-    <div class="gcse-search"></div>
+            <button type="submit"><i class="fas fa-play"></i></button> <!-- Play button icon -->
+        </form>
+    </div>
 
     <script>
-        document.getElementById('tmdbForm').addEventListener('submit', function(event) {
+        document.getElementById('inputForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let link = document.getElementById('linkInput').value;
+            let num1 = document.getElementById('number1').value;
+            let num2 = document.getElementById('number2').value;
+            
+            if (!link || !num1 || !num2) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            alert(`Submitted:\nLink: ${link}\nNumber 1: ${num1}\nNumber 2: ${num2}`);
+        });
+           document.getElementById('tmdbForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let tmdbInput = document.getElementById('tmdbId').value;
             let tmdbId = tmdbInput;
@@ -52,5 +112,41 @@
             window.location.href = `stream/long.html?TMDB=${tmdbId}`;
         });
     </script>
+    </main>
+  <nav class="bottom-nav">
+        <a href="/" class="nav-item">
+            <span class="tooltip">Home</span>
+            🏠
+        </a>
+        <a href="/active" class="nav-item">
+            <span class="tooltip">Search</span>
+            🔍
+        </a>
+        <a href="/jace" class="nav-item">
+            <span class="tooltip">Games</span>
+            🎮
+        </a>
+        <a href="/Stream-Star/movies.html" class="nav-item">
+            <span class="tooltip">Movies</span>
+            🎬
+        </a>
+        <a href="/Stream-Star/tv.html" class="nav-item">
+            <span class="tooltip">TV</span>
+            📺
+        </a>
+        <a href="/chatti.html" class="nav-item">
+            <span class="tooltip">AI</span>
+            🤖
+        </a>
+        <a href="/partners.html" class="nav-item">
+            <span class="tooltip">Partners</span>
+            🤝
+        </a>
+         <a href="/settings.html" class="nav-item">
+            <span class="tooltip">Settings</span>
+            ⚙
+        </a>
+    </nav>
+    <script src="/settings.js"></script>
 </body>
 </html>
