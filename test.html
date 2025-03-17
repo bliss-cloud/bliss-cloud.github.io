@@ -21,7 +21,7 @@
         <input type="text" id="url" placeholder="Enter URL or search term" onkeydown="handleKey(event)">
         <button onclick="loadPage()">Go</button>
     </div>
-    <iframe id="browser" src="Stream-Star/embed#https://duckduckgo.com" allowfullscreen></iframe>
+    <iframe id="browser" src="Stream-Star/stream/embed#https://duckduckgo.com" allowfullscreen></iframe>
     
     <script>
         const iframe = document.getElementById('browser');
@@ -33,9 +33,9 @@
             let url = input.value.trim();
             if (!url) return;
             if (!url.startsWith('http') && !url.includes('.')) {
-                url = `Stream-Star/Stream/embed#https://duckduckgo.com/?q=${encodeURIComponent(url)}`;
+                url = `Stream-Star/stream/embed#https://duckduckgo.com/?q=${encodeURIComponent(url)}`;
             } else if (!url.startsWith('http')) {
-                url = `Stream-Star/Stream/embed#https://${url}`;
+                url = `Stream-Star/stream/embed#https://${url}`;
             }
             historyStack.push(url);
             historyIndex++;
