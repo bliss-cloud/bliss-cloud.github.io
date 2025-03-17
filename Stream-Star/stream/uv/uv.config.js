@@ -2,7 +2,7 @@ self.__uv$config = {
     prefix: '/Stream-Star/stream/watch/',
     
     // BARE SERVER
-    bare:'https://politechnika-nova.edu.pl/bare/',
+    bare:'https://nauka.politechnika-nova.edu.pl/',
     
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
