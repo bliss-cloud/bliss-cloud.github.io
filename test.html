@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Browser</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; height: 100%; display: flex; flex-direction: column; }
+        #nav { display: flex; padding: 10px; background: #333; color: white; align-items: center; }
+        button { margin: 0 5px; padding: 5px 10px; cursor: pointer; }
+        input { flex-grow: 1; padding: 5px; margin: 0 10px; }
+        iframe { flex-grow: 1; width: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <button onclick="goBack()">⬅️</button>
+        <button onclick="goForward()">➡️</button>
+        <button onclick="reloadPage()">🔄</button>
+        <input type="text" id="url" placeholder="Enter URL or search term" onkeydown="handleKey(event)">
+        <button onclick="loadPage()">Go</button>
+    </div>
+    <iframe id="browser" src="Stream-Star/embed#https://duckduckgo.com" allowfullscreen></iframe>
+    
+    <script>
+        const iframe = document.getElementById('browser');
+        const input = document.getElementById('url');
+        const historyStack = [];
+        let historyIndex = -1;
+
+        function loadPage() {
+            let url = input.value.trim();
+            if (!url) return;
+            if (!url.startsWith('http') && !url.includes('.')) {
+                url = `Stream-Star/Stream/embed#https://duckduckgo.com/?q=${encodeURIComponent(url)}`;
+            } else if (!url.startsWith('http')) {
+                url = `Stream-Star/Stream/embed#https://${url}`;
+            }
+            historyStack.push(url);
+            historyIndex++;
+            iframe.src = url;
+        }
+
+        function handleKey(event) {
+            if (event.key === 'Enter') loadPage();
+        }
+
+        function goBack() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                iframe.src = historyStack[historyIndex];
+            }
+        }
+
+        function goForward() {
+            if (historyIndex < historyStack.length - 1) {
+                historyIndex++;
+                iframe.src = historyStack[historyIndex];
+            }
+        }
+
+        function reloadPage() {
+            iframe.src = iframe.src;
+        }
+    </script>
+</body>
+</html>
